@@ -2,7 +2,7 @@ const questions = [
     {
         question: "In non-listed assemblies, at what minimum angle from the horizontal must filters be installed?",
         options: ["A. 30 degrees", "B. 45 degrees", "C. 60 degrees", "D. 90 degrees"],
-        correctAnswer: "C. 60 degrees"
+        correctAnswer: "B. 45 degrees"
     },
     {
         question: "What is the minimum required space between a deep fat fryer and surface flames from adjacent cooking equipment?",
