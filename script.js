@@ -47,7 +47,7 @@ const questions = [
     {
         question: "Which of the following is used for odor control in some kitchen exhaust systems?",
         options: ["A. Sodium chloride", "B. Activated charcoal", "C. Potassium permanganate", "D. Calcium carbonate"],
-        correctAnswer: "B. Activated charcoal"
+        correctAnswer: "C. Potassium permanganate"
     },
     {
         question: "What is the minimum replacement frequency for fusible links of the metal alloy type?",
@@ -57,22 +57,22 @@ const questions = [
     {
         question: "The first step to take when cleaning or inspecting a multiple-pass disposable filter pollution control unit is to:",
         options: ["A. Disconnect the power source", "B. Remove the filters", "C. Inspect the operation controls", "D. Check for grease accumulation"],
-        correctAnswer: "A. Disconnect the power source"
+        correctAnswer: "C. Inspect the operation controls"
     },
     {
         question: "Systems serving solid fuel cooking operations must be inspected at what frequency?",
         options: ["A. Weekly", "B. Monthly", "C. Quarterly", "D. Semi-annually"],
-        correctAnswer: "A. Weekly"
+        correctAnswer: "B. Monthly"
     },
     {
         question: "A 24-hour restaurant using charbroilers is considered a high-volume cooking operation. How often should its exhaust system be inspected?",
         options: ["A. Monthly", "B. Quarterly", "C. Semi-annually", "D. Annually"],
-        correctAnswer: "A. Monthly"
+        correctAnswer: "B. Quarterly"
     },
     {
         question: "A grease depth measurement of which of the following in the ductwork would indicate an immediate need for cleaning?",
         options: ["A. 50 microns", "B. 1000 microns", "C. 1500 microns", "D. 2000 microns"],
-        correctAnswer: "C. 1500 microns"
+        correctAnswer: "D. 2000 microns"
     },
     {
         question: "What is the maximum allowable grease depth measurement immediately after a kitchen exhaust system has been cleaned?",
