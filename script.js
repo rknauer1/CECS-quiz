@@ -148,6 +148,151 @@ const questions = [
         question: "The wastewater generated from cleaning a kitchen exhaust system contains grease. What is the proper method of disposal?",
         options: ["A. Collected and disposed of at a designated facility or via a grease trap", "B. Poured down a sanitary sewer drain at the job site", "C. Poured down a storm drain if no sanitary sewer is available", "D. Allowed to evaporate, with the solid residue disposed of in the trash"],
         correctAnswer: "A. Collected and disposed of at a designated facility or via a grease trap"
+    },
+    {
+        question: "Unless a reduction system is used, what is the minimum clearance required between an unenclosed exhaust duct and combustible material?",
+        options: ["A. 0 in (0 mm)", "B. 3 in (76 mm)", "C. 9 in (229 mm)", "D. 18 in (457 mm)"],
+        correctAnswer: "D. 18 in (457 mm)"
+    },
+    {
+        question: "What is the minimum vertical distance that must be maintained between the lower edge of a grease removal device and the cooking surface of a solid fuel charbroiler?",
+        options: ["A. 6 in (152 mm)", "B. 18 in (457 mm)", "C. 3 ft (0.92 m)", "D. 4 ft (1.22 m)"],
+        correctAnswer: "D. 4 ft (1.22 m)"
+    },
+    {
+        question: "A hinged upblast fan on a rooftop must be installed so that its point of attachment to the ductwork is at least how far away from the roof surface?",
+        options: ["A. 10 in (254 mm)", "B. 18 in (457 mm)", "C. 36 in (914 mm)", "D. 40 in (1.02 m)"],
+        correctAnswer: "B. 18 in (457 mm)"
+    },
+    {
+        question: "All deep-fat fryers must be installed with at least how much space between the fryer and surface flames from adjacent cooking equipment?",
+        options: ["A. 8 in (203 mm)", "B. 12 in (305 mm)", "C. 16 in (406 mm)", "D. 18 in (457 mm)"],
+        correctAnswer: "C. 16 in (406 mm)"
+    },
+    {
+        question: "When a clearance reduction system using 28-gauge sheet metal on noncombustible spacers is installed, what is the new minimum clearance to combustible material?",
+        options: ["A. 3 in (76 mm)", "B. 9 in (229 mm)", "C. 12 in (305 mm)", "D. 18 in (457 mm)"],
+        correctAnswer: "B. 9 in (229 mm)"
+    },
+    {
+        question: "A rooftop termination outlet must have a minimum horizontal clearance of what distance from an adjacent building's air intake?",
+        options: ["A. 3 ft (0.92 m)", "B. 5 ft (1.5 m)", "C. 10 ft (3 m)", "D. 15 ft (4.5 m)"],
+        correctAnswer: "C. 10 ft (3 m)"
+    },
+    {
+        question: "A hinged upblast fan on a rooftop must discharge a minimum of how far away from the roof surface?",
+        options: ["A. 18 in (457 mm)", "B. 24 in (610 mm)", "C. 36 in (914 mm)", "D. 40 in (1.02 m)"],
+        correctAnswer: "D. 40 in (1.02 m)"
+    },
+    {
+        question: "For cooking equipment without an exposed flame where flue gases bypass the filter, the minimum vertical distance between the filter and the cooking surface can be reduced to what measurement?",
+        options: ["A. 6 in (152 mm)", "B. 9 in (229 mm)", "C. 12 in (305 mm)", "D. 18 in (457 mm)"],
+        correctAnswer: "A. 6 in (152 mm)"
+    },
+    {
+        question: "What is the minimum required clearance between an unenclosed exhaust duct and limited-combustible material?",
+        options: ["A. 0 in (0 mm)", "B. 3 in (76 mm)", "C. 6 in (152 mm)", "D. 9 in (229 mm)"],
+        correctAnswer: "B. 3 in (76 mm)"
+    },
+    {
+        question: "A steel baffle plate used to protect a grease removal device must be located at least how far from the device itself?",
+        options: ["A. 3 in (76 mm)", "B. 6 in (152 mm)", "C. 12 in (305 mm)", "D. 18 in (457 mm)"],
+        correctAnswer: "B. 6 in (152 mm)"
+    },
+    {
+        question: "What is the minimum distance between a grease removal device and a cooking surface, unless special conditions apply?",
+        options: ["A. 12 in (305 mm)", "B. 16 in (406 mm)", "C. 18 in (457 mm)", "D. 24 in (610 mm)"],
+        correctAnswer: "C. 18 in (457 mm)"
+    },
+    {
+        question: "The requirement for a 16-inch space between a fryer and surface flames can be waived if a steel or tempered glass baffle plate of what minimum height is installed?",
+        options: ["A. 6 in (152 mm)", "B. 8 in (203 mm)", "C. 12 in (305 mm)", "D. 16 in (406 mm)"],
+        correctAnswer: "B. 8 in (203 mm)"
+    },
+    {
+        question: "A rooftop termination fan housing must have a minimum horizontal clearance of what distance from any combustible structure?",
+        options: ["A. 3 ft (0.92 m)", "B. 5 ft (1.5 m)", "C. 10 ft (3 m)", "D. 18 ft (5.5 m)"],
+        correctAnswer: "B. 5 ft (1.5 m)"
+    },
+    {
+        question: "When a baffle plate is used to protect a grease removal device, it must be sized so that flames travel a distance of at least how far from the heat source to the device?",
+        options: ["A. 6 in (152 mm)", "B. 12 in (305 mm)", "C. 18 in (457 mm)", "D. 24 in (610 mm)"],
+        correctAnswer: "C. 18 in (457 mm)"
+    },
+    {
+        question: "What is the minimum clearance between an unenclosed exhaust duct and noncombustible material?",
+        options: ["A. 0 in (0 mm)", "B. 1 in (25 mm)", "C. 3 in (76 mm)", "D. 6 in (152 mm)"],
+        correctAnswer: "A. 0 in (0 mm)"
+    },
+    {
+        question: "At what measured depth of grease accumulation must surfaces in a kitchen exhaust system be cleaned?",
+        options: ["A. 50 µm (0.002 in)", "B. 1000 µm (0.039 in)", "C. 2000 µm (0.078 in)", "D. 3175 µm (0.125 in)"],
+        correctAnswer: "C. 2000 µm (0.078 in)"
+    },
+    {
+        question: "After cleaning, hoods, grease removal devices, and ducts must be cleaned to a maximum combustible contaminant level of what depth?",
+        options: ["A. 50 µm (0.002 in)", "B. 100 µm (0.004 in)", "C. 500 µm (0.020 in)", "D. 1000 µm (0.039 in)"],
+        correctAnswer: "A. 50 µm (0.002 in)"
+    },
+    {
+        question: "A rooftop exhaust outlet must have a vertical separation of what distance above any air intakes that are located within 10 feet horizontally?",
+        options: ["A. 18 in (457 mm)", "B. 2 ft (0.61 m)", "C. 3 ft (0.92 m)", "D. 5 ft (1.5 m)"],
+        correctAnswer: "C. 3 ft (0.92 m)"
+    },
+    {
+        question: "At what measured depth of grease accumulation must a fan housing be cleaned?",
+        options: ["A. 1000 µm (0.039 in)", "B. 2000 µm (0.078 in)", "C. 2500 µm (0.098 in)", "D. 3175 µm (0.125 in)"],
+        correctAnswer: "D. 3175 µm (0.125 in)"
+    },
+    {
+        question: "When a clearance reduction system using 22-gauge sheet metal on 1-inch mineral wool batts is installed, what is the new minimum clearance to combustible material?",
+        options: ["A. 3 in (76 mm)", "B. 6 in (152 mm)", "C. 9 in (229 mm)", "D. 12 in (305 mm)"],
+        correctAnswer: "A. 3 in (76 mm)"
+    },
+    {
+        question: "After cleaning is complete, a written report must be provided to the system owner within what timeframe?",
+        options: ["A. 48 hours", "B. 5 business days", "C. 2 weeks", "D. 30 days"],
+        correctAnswer: "C. 2 weeks"
+    },
+    {
+        question: "Which of the following is explicitly forbidden for use as a cleaning aid in a kitchen exhaust system?",
+        options: ["A. Abrasive powders", "B. Flammable solvents", "C. High-pressure steam", "D. Caustic chemicals"],
+        correctAnswer: "B. Flammable solvents"
+    },
+    {
+        question: "Which of the following components must not have cleaning chemicals applied to them?",
+        options: ["A. Fan blades", "B. Duct access panels", "C. Fusible links", "D. Grease collection cups"],
+        correctAnswer: "C. Fusible links"
+    },
+    {
+        question: "What is the first step that must be taken at the start of the cleaning process to ensure safety?",
+        options: ["A. Cover all cooking appliances.", "B. Notify the local fire department.", "C. Lock out electrical switches that could be accidentally activated.", "D. Test the fire suppression system."],
+        correctAnswer: "C. Lock out electrical switches that could be accidentally activated."
+    },
+    {
+        question: "After cleaning is completed, what must be done with access panels and cover plates?",
+        options: ["A. Tagged with the date of the next required cleaning.", "B. Restored to their normal operational condition.", "C. Sealed with a temporary, non-grease-tight sealant.", "D. Left open for 24 hours to allow for ventilation."],
+        correctAnswer: "B. Restored to their normal operational condition."
+    },
+    {
+        question: "Who is permitted to render a fire-extinguishing system inoperable during the cleaning process?",
+        options: ["A. Any certified cleaning technician", "B. The building owner or agent", "C. Properly trained and qualified persons servicing the system", "D. The local authority having jurisdiction"],
+        correctAnswer: "C. Properly trained and qualified persons servicing the system"
+    },
+    {
+        question: "According to the standard, what must be done with grease removal devices that are found to be broken or have missing components?",
+        options: ["A. They must be cleaned and reinstalled.", "B. They must be documented in the cleaning report.", "C. They can be repaired on-site with equivalent parts.", "D. They shall be replaced."],
+        correctAnswer: "D. They shall be replaced."
+    },
+    {
+        question: "An adhesive label attached to the hood after an inspection or cleaning must remain affixed until what time?",
+        options: ["A. The end of the calendar year", "B. The report is filed with the AHJ", "C. The next inspection or cleaning event", "D. 30 days after the service date"],
+        correctAnswer: "C. The next inspection or cleaning event"
+    },
+    {
+        question: "Metal containers used for collecting grease drippings from the system must be inspected or emptied at what minimum frequency?",
+        options: ["A. Daily", "B. Every 3 days", "C. At least weekly", "D. At least monthly"],
+        correctAnswer: "C. At least weekly"
     }
 ];
 
@@ -164,6 +309,15 @@ const resultsContainer = document.getElementById('results-container');
 const scoreSpan = document.getElementById('score');
 const totalQuestionsSpan = document.getElementById('total-questions');
 const restartBtn = document.getElementById('restart-btn');
+
+// Function to shuffle an array (Fisher-Yates algorithm)
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]]; // ES6 swap
+    }
+}
+
 
 function loadQuestion() {
     selectedAnswer = null; // Reset selected answer for new question
@@ -254,6 +408,7 @@ function showResults() {
 function restartQuiz() {
     currentQuestionIndex = 0;
     score = 0;
+    shuffleArray(questions); // Re-shuffle questions for a new attempt
     resultsContainer.style.display = 'none';
     quizContainer.style.display = 'block';
     loadQuestion();
@@ -264,4 +419,5 @@ submitBtn.addEventListener('click', submitAnswer);
 restartBtn.addEventListener('click', restartQuiz);
 
 // Initial load
+shuffleArray(questions); // Shuffle questions on initial load
 loadQuestion();
