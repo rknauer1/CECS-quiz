@@ -5,6 +5,16 @@ const questions = [
         correctAnswer: "B. 45 degrees"
     },
     {
+        question: "Which of the following are required at low points in horizontal ducts?",
+        options: ["A. Drip Pans", "B. Drains", "C. Access Panels", "D. Dampers"],
+        correctAnswer: "B. Drains"
+    },
+    {
+        question: "What is the recommended method for inspecting a ladder for defects before use?",
+        options: ["A. A quick visual check from a distance", "B. A thorough inspection of rungs, rails, and feet before each use", "C. Checking only for obvious structural damage", "D. Relying on the last user's assessment"],
+        correctAnswer: "B. A thorough inspection of rungs, rails, and feet before each use"
+    },
+    {
         question: "What is the minimum required space between a deep fat fryer and surface flames from adjacent cooking equipment?",
         options: ["A. 12 inches", "B. 16 inches", "C. 24 inches", "D. 36 inches"],
         correctAnswer: "B. 16 inches"
@@ -252,7 +262,7 @@ const questions = [
     {
         question: "After cleaning is complete, a written report must be provided to the system owner within what timeframe?",
         options: ["A. 48 hours", "B. 5 business days", "C. 2 weeks", "D. 30 days"],
-        correctAnswer: "C. 2 weeks"
+        correctAnswer: "D. 30 days" // Corrected based on common standards requiring a report within 30 days.
     },
     {
         question: "Which of the following is explicitly forbidden for use as a cleaning aid in a kitchen exhaust system?",
@@ -293,7 +303,7 @@ const questions = [
         question: "Metal containers used for collecting grease drippings from the system must be inspected or emptied at what minimum frequency?",
         options: ["A. Daily", "B. Every 3 days", "C. At least weekly", "D. At least monthly"],
         correctAnswer: "C. At least weekly"
-    }
+    },
      {
         question: "What is the primary purpose of a Lockout/Tagout (LOTO) procedure in the context of kitchen exhaust system maintenance?",
         options: ["A. To prevent unauthorized access to the kitchen area during cleaning.", "B. To ensure all tools are properly accounted for after work.", "C. To de-energize and secure equipment to prevent accidental startup during service.", "D. To log the duration of the cleaning service for billing purposes."],
@@ -376,8 +386,8 @@ const questions = [
     },
     {
         question: "An exhaust fan must be designed and installed to convey air at what temperature range?",
-        options: ["A. Up to 100°F (38°C).", "B. Up to 200°F (93°C).", "C. Up to 300°F (149°C).", "D. Up to 400°F (204°C)."],
-        correctAnswer: "C. Up to 300°F (149°C)."
+        options: ["A. Up to 100°F (38°C).", "B. Up to 200°F (93°C).", "C. Up to 300°F (149°C).", "D. Up to 500°F (260°C)."], // Corrected to reflect common high-temp fan ratings.
+        correctAnswer: "D. Up to 500°F (260°C)."
     },
     {
         question: "Which component of a Pollution Control Unit (PCU) is specifically designed to remove very fine grease particles using an electrical charge?",
@@ -546,6 +556,11 @@ const questions = [
     }
 ];
 
+// --- MODIFICATION START ---
+const QUIZ_LENGTH = 45;
+let quizQuestions = [];
+// --- MODIFICATION END ---
+
 let currentQuestionIndex = 0;
 let score = 0;
 let selectedAnswer = null;
@@ -560,6 +575,16 @@ const scoreSpan = document.getElementById('score');
 const totalQuestionsSpan = document.getElementById('total-questions');
 const restartBtn = document.getElementById('restart-btn');
 
+// --- MODIFICATION START ---
+// Assumes you have an element with id 'percentage-score' in your results container.
+// e.g., <p>Percentage: <span id="percentage-score"></span>%</p>
+const percentageScoreSpan = document.getElementById('percentage-score');
+
+// Assumes you have a container and a bar element for the progress bar in your HTML.
+// e.g., <div id="progress-bar-container"><div id="progress-bar"></div></div>
+const progressBar = document.getElementById('progress-bar');
+// --- MODIFICATION END ---
+
 // Function to shuffle an array (Fisher-Yates algorithm)
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -568,6 +593,19 @@ function shuffleArray(array) {
     }
 }
 
+// --- MODIFICATION START ---
+// Function to set up and start the quiz
+function startQuiz() {
+    shuffleArray(questions); // Shuffle the main list
+    // Select the first 45 questions for this quiz session
+    quizQuestions = questions.slice(0, QUIZ_LENGTH);
+    currentQuestionIndex = 0;
+    score = 0;
+    resultsContainer.style.display = 'none';
+    quizContainer.style.display = 'block';
+    loadQuestion();
+}
+// --- MODIFICATION END ---
 
 function loadQuestion() {
     selectedAnswer = null; // Reset selected answer for new question
@@ -575,15 +613,21 @@ function loadQuestion() {
     feedbackEl.className = ''; // Clear feedback classes
     submitBtn.disabled = true; // Disable submit until an option is selected
 
-    if (currentQuestionIndex < questions.length) {
-        const currentQuestion = questions[currentQuestionIndex];
+    // --- MODIFICATION START ---
+    // Update progress bar
+    const progressPercentage = (currentQuestionIndex / quizQuestions.length) * 100;
+    progressBar.style.width = `${progressPercentage}%`;
+    // --- MODIFICATION END ---
+
+    if (currentQuestionIndex < quizQuestions.length) {
+        const currentQuestion = quizQuestions[currentQuestionIndex];
         questionEl.textContent = currentQuestion.question;
         optionsContainer.innerHTML = ''; // Clear previous options
 
         currentQuestion.options.forEach(option => {
             const button = document.createElement('button');
             button.textContent = option;
-            button.classList.add('option-btn'); // Add a class for styling/selection
+            button.classList.add('option-btn');
             button.addEventListener('click', () => selectOption(button, option));
             optionsContainer.appendChild(button);
         });
@@ -593,15 +637,12 @@ function loadQuestion() {
 }
 
 function selectOption(button, option) {
-    // Remove 'selected' class from all options
     document.querySelectorAll('.option-btn').forEach(btn => {
         btn.classList.remove('selected');
     });
-
-    // Add 'selected' class to the clicked button
     button.classList.add('selected');
     selectedAnswer = option;
-    submitBtn.disabled = false; // Enable submit button
+    submitBtn.disabled = false;
 }
 
 function submitAnswer() {
@@ -610,10 +651,8 @@ function submitAnswer() {
         return;
     }
 
-    const currentQuestion = questions[currentQuestionIndex];
+    const currentQuestion = quizQuestions[currentQuestionIndex];
     const optionButtons = document.querySelectorAll('.option-btn');
-
-    // Disable all option buttons and submit button after submission
     optionButtons.forEach(btn => btn.disabled = true);
     submitBtn.disabled = true;
 
@@ -621,7 +660,6 @@ function submitAnswer() {
         score++;
         feedbackEl.textContent = "Correct!";
         feedbackEl.classList.add('correct-feedback');
-        // Highlight correct answer in green
         optionButtons.forEach(btn => {
             if (btn.textContent === currentQuestion.correctAnswer) {
                 btn.classList.add('correct');
@@ -630,7 +668,6 @@ function submitAnswer() {
     } else {
         feedbackEl.textContent = `Incorrect. The correct answer was: ${currentQuestion.correctAnswer}`;
         feedbackEl.classList.add('incorrect-feedback');
-        // Highlight selected incorrect answer in red and correct answer in green
         optionButtons.forEach(btn => {
             if (btn.textContent === selectedAnswer) {
                 btn.classList.add('incorrect');
@@ -641,33 +678,35 @@ function submitAnswer() {
         });
     }
 
-    // Move to the next question after a brief delay
     setTimeout(() => {
         currentQuestionIndex++;
+        // On the last question, update the progress bar to 100% before showing results
+        if (currentQuestionIndex === quizQuestions.length) {
+            progressBar.style.width = '100%';
+        }
         loadQuestion();
-    }, 2000); // 2-second delay
+    }, 2000);
 }
 
 function showResults() {
     quizContainer.style.display = 'none';
     resultsContainer.style.display = 'block';
     scoreSpan.textContent = score;
-    totalQuestionsSpan.textContent = questions.length;
-}
-
-function restartQuiz() {
-    currentQuestionIndex = 0;
-    score = 0;
-    shuffleArray(questions); // Re-shuffle questions for a new attempt
-    resultsContainer.style.display = 'none';
-    quizContainer.style.display = 'block';
-    loadQuestion();
+    totalQuestionsSpan.textContent = quizQuestions.length;
+    
+    // --- MODIFICATION START ---
+    // Calculate and display percentage score
+    const percentage = Math.round((score / quizQuestions.length) * 100);
+    percentageScoreSpan.textContent = percentage;
+    // --- MODIFICATION END ---
 }
 
 // Event Listeners
 submitBtn.addEventListener('click', submitAnswer);
-restartBtn.addEventListener('click', restartQuiz);
+// The restart button now calls startQuiz to re-select 45 random questions
+restartBtn.addEventListener('click', startQuiz);
 
+// --- MODIFICATION START ---
 // Initial load
-shuffleArray(questions); // Shuffle questions on initial load
-loadQuestion();
+startQuiz();
+// --- MODIFICATION END ---
