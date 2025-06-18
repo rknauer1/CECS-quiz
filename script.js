@@ -262,7 +262,7 @@ const questions = [
     {
         question: "After cleaning is complete, a written report must be provided to the system owner within what timeframe?",
         options: ["A. 48 hours", "B. 5 business days", "C. 2 weeks", "D. 30 days"],
-        correctAnswer: "D. 30 days" // Corrected based on common standards requiring a report within 30 days.
+        correctAnswer: "D. 30 days" 
     },
     {
         question: "Which of the following is explicitly forbidden for use as a cleaning aid in a kitchen exhaust system?",
@@ -386,7 +386,7 @@ const questions = [
     },
     {
         question: "An exhaust fan must be designed and installed to convey air at what temperature range?",
-        options: ["A. Up to 100°F (38°C).", "B. Up to 200°F (93°C).", "C. Up to 300°F (149°C).", "D. Up to 500°F (260°C)."], // Corrected to reflect common high-temp fan ratings.
+        options: ["A. Up to 100°F (38°C).", "B. Up to 200°F (93°C).", "C. Up to 300°F (149°C).", "D. Up to 500°F (260°C)."], 
         correctAnswer: "D. Up to 500°F (260°C)."
     },
     {
@@ -556,15 +556,17 @@ const questions = [
     }
 ];
 
-// --- MODIFICATION START ---
+// --- MODIFICATION ---
+// Define the number of questions for the quiz
 const QUIZ_LENGTH = 45;
-let quizQuestions = [];
-// --- MODIFICATION END ---
+let quizQuestions = []; // This array will hold the 45 questions for the current session
+// --- END MODIFICATION ---
 
 let currentQuestionIndex = 0;
 let score = 0;
 let selectedAnswer = null;
 
+// DOM Element References
 const questionEl = document.getElementById('question');
 const optionsContainer = document.getElementById('options-container');
 const submitBtn = document.getElementById('submit-btn');
@@ -575,49 +577,58 @@ const scoreSpan = document.getElementById('score');
 const totalQuestionsSpan = document.getElementById('total-questions');
 const restartBtn = document.getElementById('restart-btn');
 
-// --- MODIFICATION START ---
-// Assumes you have an element with id 'percentage-score' in your results container.
-// e.g., <p>Percentage: <span id="percentage-score"></span>%</p>
-const percentageScoreSpan = document.getElementById('percentage-score');
-
-// Assumes you have a container and a bar element for the progress bar in your HTML.
-// e.g., <div id="progress-bar-container"><div id="progress-bar"></div></div>
+// --- NEW --- DOM Element references for new features
 const progressBar = document.getElementById('progress-bar');
-// --- MODIFICATION END ---
+const percentageScoreSpan = document.getElementById('percentage-score');
+// --- END NEW ---
 
-// Function to shuffle an array (Fisher-Yates algorithm)
+/**
+ * Shuffles an array in place using the Fisher-Yates algorithm.
+ * @param {Array} array The array to be shuffled.
+ */
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]]; // ES6 swap
+        [array[i], array[j]] = [array[j], array[i]];
     }
 }
 
-// --- MODIFICATION START ---
-// Function to set up and start the quiz
+/**
+ * Sets up and starts a new quiz session.
+ */
 function startQuiz() {
-    shuffleArray(questions); // Shuffle the main list
-    // Select the first 45 questions for this quiz session
-    quizQuestions = questions.slice(0, QUIZ_LENGTH);
+    // Reset state for a new quiz
     currentQuestionIndex = 0;
     score = 0;
+    
+    // Shuffle the master list of questions
+    const shuffledQuestions = [...questions];
+    shuffleArray(shuffledQuestions);
+    
+    // Select the first 45 questions for this quiz session
+    quizQuestions = shuffledQuestions.slice(0, QUIZ_LENGTH);
+    
+    // Reset UI
     resultsContainer.style.display = 'none';
     quizContainer.style.display = 'block';
+    
+    // Load the first question
     loadQuestion();
 }
-// --- MODIFICATION END ---
 
+/**
+ * Loads the current question and its options into the DOM.
+ */
 function loadQuestion() {
-    selectedAnswer = null; // Reset selected answer for new question
-    feedbackEl.textContent = ''; // Clear previous feedback
-    feedbackEl.className = ''; // Clear feedback classes
-    submitBtn.disabled = true; // Disable submit until an option is selected
+    // Reset UI for the new question
+    selectedAnswer = null;
+    feedbackEl.textContent = '';
+    feedbackEl.className = '';
+    submitBtn.disabled = true;
 
-    // --- MODIFICATION START ---
-    // Update progress bar
-    const progressPercentage = (currentQuestionIndex / quizQuestions.length) * 100;
-    progressBar.style.width = `${progressPercentage}%`;
-    // --- MODIFICATION END ---
+    // --- NEW --- Update the progress bar
+    updateProgressBar();
+    // --- END NEW ---
 
     if (currentQuestionIndex < quizQuestions.length) {
         const currentQuestion = quizQuestions[currentQuestionIndex];
@@ -632,81 +643,104 @@ function loadQuestion() {
             optionsContainer.appendChild(button);
         });
     } else {
+        // No more questions, show the results
         showResults();
     }
 }
 
+/**
+ * --- NEW --- Updates the width and text of the progress bar.
+ */
+function updateProgressBar() {
+    const progressPercentage = Math.round((currentQuestionIndex / quizQuestions.length) * 100);
+    if (progressBar) {
+        progressBar.style.width = `${progressPercentage}%`;
+        progressBar.textContent = `${progressPercentage}%`;
+    }
+}
+
+/**
+ * Handles the user's selection of an answer option.
+ * @param {HTMLElement} button The button element that was clicked.
+ * @param {string} option The text content of the selected option.
+ */
 function selectOption(button, option) {
+    // Remove 'selected' class from all buttons
     document.querySelectorAll('.option-btn').forEach(btn => {
         btn.classList.remove('selected');
     });
+    // Add 'selected' class to the clicked button
     button.classList.add('selected');
     selectedAnswer = option;
-    submitBtn.disabled = false;
+    submitBtn.disabled = false; // Enable the submit button
 }
 
+/**
+ * Processes the submitted answer, provides feedback, and moves to the next question.
+ */
 function submitAnswer() {
-    if (selectedAnswer === null) {
-        alert("Please select an answer!");
-        return;
-    }
+    if (selectedAnswer === null) return; // Should not happen if button is disabled
 
     const currentQuestion = quizQuestions[currentQuestionIndex];
     const optionButtons = document.querySelectorAll('.option-btn');
+    
+    // Disable all option buttons after submitting
     optionButtons.forEach(btn => btn.disabled = true);
     submitBtn.disabled = true;
 
+    // Check if the answer is correct
     if (selectedAnswer === currentQuestion.correctAnswer) {
         score++;
         feedbackEl.textContent = "Correct!";
         feedbackEl.classList.add('correct-feedback');
-        optionButtons.forEach(btn => {
-            if (btn.textContent === currentQuestion.correctAnswer) {
-                btn.classList.add('correct');
-            }
-        });
     } else {
         feedbackEl.textContent = `Incorrect. The correct answer was: ${currentQuestion.correctAnswer}`;
         feedbackEl.classList.add('incorrect-feedback');
-        optionButtons.forEach(btn => {
-            if (btn.textContent === selectedAnswer) {
-                btn.classList.add('incorrect');
-            }
-            if (btn.textContent === currentQuestion.correctAnswer) {
-                btn.classList.add('correct');
-            }
-        });
     }
 
+    // Visually mark the correct and incorrect answers
+    optionButtons.forEach(btn => {
+        if (btn.textContent === currentQuestion.correctAnswer) {
+            btn.classList.add('correct');
+        } else if (btn.textContent === selectedAnswer) {
+            btn.classList.add('incorrect');
+        }
+    });
+
+    // Wait for a moment before loading the next question
     setTimeout(() => {
         currentQuestionIndex++;
-        // On the last question, update the progress bar to 100% before showing results
-        if (currentQuestionIndex === quizQuestions.length) {
-            progressBar.style.width = '100%';
-        }
         loadQuestion();
-    }, 2000);
+    }, 2000); // 2-second delay
 }
 
+/**
+ * Displays the final quiz results.
+ */
 function showResults() {
     quizContainer.style.display = 'none';
     resultsContainer.style.display = 'block';
+    
+    // --- NEW --- Update progress bar to 100% at the end
+    if (progressBar) {
+        progressBar.style.width = '100%';
+        progressBar.textContent = '100%';
+    }
+    // --- END NEW ---
+
     scoreSpan.textContent = score;
     totalQuestionsSpan.textContent = quizQuestions.length;
-    
-    // --- MODIFICATION START ---
-    // Calculate and display percentage score
+
+    // --- NEW --- Calculate and display the percentage score
     const percentage = Math.round((score / quizQuestions.length) * 100);
     percentageScoreSpan.textContent = percentage;
-    // --- MODIFICATION END ---
+    // --- END NEW ---
 }
+
 
 // Event Listeners
 submitBtn.addEventListener('click', submitAnswer);
-// The restart button now calls startQuiz to re-select 45 random questions
-restartBtn.addEventListener('click', startQuiz);
+restartBtn.addEventListener('click', startQuiz); // Restarting the quiz re-runs the setup
 
-// --- MODIFICATION START ---
-// Initial load
+// Initial call to start the quiz when the page loads
 startQuiz();
-// --- MODIFICATION END ---
