@@ -262,7 +262,7 @@ const questions = [
     {
         question: "After cleaning is complete, a written report must be provided to the system owner within what timeframe?",
         options: ["A. 48 hours", "B. 5 business days", "C. 2 weeks", "D. 30 days"],
-        correctAnswer: "D. 30 days" 
+        correctAnswer: "C. 2 weeks" 
     },
     {
         question: "Which of the following is explicitly forbidden for use as a cleaning aid in a kitchen exhaust system?",
